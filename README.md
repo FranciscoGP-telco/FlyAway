@@ -10,8 +10,10 @@ Project created for the Java FSD Full Stack Phase 2
       <a href="#about-the-project">About The Project</a>
     </li>
     <li>
+      <a href="#entity-relationship-diagram">Entity-relationship Diagram</a>
+    </li>
+    <li>
       <a href="#advice">Advice</a>
-      </ul>
     </li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -34,6 +36,11 @@ Also, we need an admin webpage with the following features:
 2. A master list of places for source and destination
 3. A master list of airlines
 4. A list of flights where each flight has a source, destination, airline, and ticket price
+
+
+<!-- ENTITY RELATIONSHIP DIAGRAM -->
+## Entity Relationship Diagram
+![Image of the entity-relationship diagram](https://github.com/FranciscoGP-telco/FlyAway/blob/main/diagram.png?raw=true)
 
 
 <!-- ADVICE -->
