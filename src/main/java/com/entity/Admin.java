@@ -1,23 +1,26 @@
 package com.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Admin {
 	@Id
-	@GeneratedValue
-	private int admin_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "admin_id")
+	private int adminId;
 	private String username;
 	private String email;
 	private String password;
 	
-	public int getAdmin_id() {
-		return admin_id;
+	public int getadminId() {
+		return adminId;
 	}
-	public void setAdmin_id(int admin_id) {
-		this.admin_id = admin_id;
+	public void setadminId(int adminId) {
+		this.adminId = adminId;
 	}
 	public String getUsername() {
 		return username;
@@ -40,7 +43,7 @@ public class Admin {
 
 	@Override
 	public String toString() {
-		return "Admin [admin_id=" + admin_id + ", username=" + username + ", email=" + email + ", password=" + password
+		return "Admin [adminId=" + adminId + ", username=" + username + ", email=" + email + ", password=" + password
 				+ "]";
 	}
 }

@@ -1,5 +1,6 @@
 package com.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,19 +12,22 @@ import javax.persistence.ManyToOne;
 public class Purchase {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int purchase_id;
+	@Column(name = "purchase_id")
+	private int purchaseId;
 	private String name;
-	private String last_name;
-	private int tlfn_number;
+	@Column(name = "last_name")
+	private String lastName;
+	@Column(name = "tlfn_number")
+	private int tlfnNumber;
 	private String email;
 	@ManyToOne
-	@JoinColumn(name="flight_id", nullable=false)
+	@JoinColumn(name = "flightId", nullable = false)
 	private Flight flight;
-	public int getPurchase_id() {
-		return purchase_id;
+	public int getpurchaseId() {
+		return purchaseId;
 	}
-	public void setPurchase_id(int purchase_id) {
-		this.purchase_id = purchase_id;
+	public void setpurchaseId(int purchaseId) {
+		this.purchaseId = purchaseId;
 	}
 	public String getName() {
 		return name;
@@ -31,17 +35,17 @@ public class Purchase {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getLast_name() {
-		return last_name;
+	public String getlastName() {
+		return lastName;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setlastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public int getTlfn_number() {
-		return tlfn_number;
+	public int gettlfnNumber() {
+		return tlfnNumber;
 	}
-	public void setTlfn_number(int tlfn_number) {
-		this.tlfn_number = tlfn_number;
+	public void settlfnNumber(int tlfnNumber) {
+		this.tlfnNumber = tlfnNumber;
 	}
 	public String getEmail() {
 		return email;
@@ -51,7 +55,7 @@ public class Purchase {
 	}
 	@Override
 	public String toString() {
-		return String.format("Purchase [purchase_id=%d, name=%s, last_name=%s, tlfn_number=%d, email=%s, flight=%d]", 
-				purchase_id, name, last_name, tlfn_number, flight.getFlight_id());
+		return String.format("Purchase [purchaseId=%d, name=%s, lastName=%s, tlfnNumber=%d, email=%s, flight=%d]", 
+				purchaseId, name, lastName, tlfnNumber, flight.getflightId());
 	}
 }

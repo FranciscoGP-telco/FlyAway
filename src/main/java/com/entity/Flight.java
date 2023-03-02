@@ -1,5 +1,6 @@
 package com.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,20 +14,22 @@ import javax.persistence.Table;
 public class Flight {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int flight_id;
+	@Column(name = "flight_id")
+	private int flightId;
 	private String source;
 	private String destiny;
-	private int n_passengers;
+	@Column(name = "n_passengers")
+	private int numPassengers;
 	@ManyToOne
-	@JoinColumn(name="airline_id", nullable=false)
+	@JoinColumn(name = "airline_id", nullable = false)
 	private Airline airline;
 	
 	
-	public int getFlight_id() {
-		return flight_id;
+	public int getflightId() {
+		return flightId;
 	}
-	public void setFlight_id(int flight_id) {
-		this.flight_id = flight_id;
+	public void setflightId(int flightId) {
+		this.flightId = flightId;
 	}
 	public String getSource() {
 		return source;
@@ -40,11 +43,11 @@ public class Flight {
 	public void setDestiny(String destiny) {
 		this.destiny = destiny;
 	}
-	public int getN_passengers() {
-		return n_passengers;
+	public int getnumPassengers() {
+		return numPassengers;
 	}
-	public void setN_passengers(int n_passengers) {
-		this.n_passengers = n_passengers;
+	public void setnumPassengers(int numPassengers) {
+		this.numPassengers = numPassengers;
 	}
 	public Airline getAirline() {
 		return airline;
@@ -54,7 +57,7 @@ public class Flight {
 	}
 	@Override
 	public String toString() {
-		return String.format("Flight [flight_id=%d, source=%s, destiny=%s, n_passengers=%d, airline=%s]", 
-				flight_id, source, destiny, airline.getName());
+		return String.format("Flight [flightId=%d, source=%s, destiny=%s, numPassengers=%d, airline=%s]", 
+				flightId, source, destiny, airline.getName());
 	}
 }

@@ -1,5 +1,6 @@
 package com.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,15 +11,16 @@ import javax.persistence.Table;
 @Table(name="airlines")
 public class Airline {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int airline_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "airline_id")
+	private int airlineId;
 	private String name;
 	
-	public int getAirline_id() {
-		return airline_id;
+	public int getAirlineId() {
+		return airlineId;
 	}
-	public void setAirline_id(int airline_id) {
-		this.airline_id = airline_id;
+	public void setAirlineId(int airlineId) {
+		this.airlineId = airlineId;
 	}
 	public String getName() {
 		return name;
@@ -29,7 +31,7 @@ public class Airline {
 	
 	@Override
 	public String toString() {
-		return String.format("Airline [airline_id=%d, name=%s]", airline_id, name);
+		return String.format("Airline [airlineId=%d, name=%s]", airlineId, name);
 	}
 	
 }
