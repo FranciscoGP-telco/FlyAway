@@ -1,5 +1,7 @@
 package com.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +22,10 @@ public class Flight {
 	private String destiny;
 	@Column(name = "n_passengers")
 	private int numPassengers;
+	@Column(name = "flight_date")
+	private Date flightDate;
+	private float price;
+
 	@ManyToOne
 	@JoinColumn(name = "airline_id", nullable = false)
 	private Airline airline;
@@ -43,6 +49,12 @@ public class Flight {
 	public void setDestiny(String destiny) {
 		this.destiny = destiny;
 	}
+	public Date getFlightDate() {
+		return flightDate;
+	}
+	public void setFlightDate(Date flightDate) {
+		this.flightDate = flightDate;
+	}
 	public int getnumPassengers() {
 		return numPassengers;
 	}
@@ -55,9 +67,17 @@ public class Flight {
 	public void setAirline(Airline airline) {
 		this.airline = airline;
 	}
+	
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
 	@Override
 	public String toString() {
-		return String.format("Flight [flightId=%d, source=%s, destiny=%s, numPassengers=%d, airline=%s]", 
-				flightId, source, destiny, airline.getName());
+		return String.format("Flight [flightId=%d, source=%s, destiny=%s, flightDate=%s, numPassengers=%d, airline=%s]", 
+				flightId, source, destiny, flightDate.toString(), numPassengers, airline.getName());
 	}
+
 }

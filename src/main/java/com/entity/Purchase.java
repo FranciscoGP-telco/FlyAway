@@ -20,6 +20,8 @@ public class Purchase {
 	@Column(name = "tlfn_number")
 	private int tlfnNumber;
 	private String email;
+	private String cardNumber;
+
 	@ManyToOne
 	@JoinColumn(name = "flightId", nullable = false)
 	private Flight flight;
@@ -53,9 +55,17 @@ public class Purchase {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getCardNumber() {
+		return cardNumber;
+	}
+	public void setCardNumber(String cardNumber) {
+		this.cardNumber = cardNumber;
+	}
+	
 	@Override
 	public String toString() {
-		return String.format("Purchase [purchaseId=%d, name=%s, lastName=%s, tlfnNumber=%d, email=%s, flight=%d]", 
-				purchaseId, name, lastName, tlfnNumber, flight.getflightId());
+		return String.format("Purchase [purchaseId=%d, name=%s, lastName=%s, tlfnNumber=%d, email=%s, cardNumber=%s, flight=%d]", 
+				purchaseId, name, lastName, tlfnNumber, cardNumber, flight.getflightId());
 	}
 }
