@@ -7,7 +7,7 @@
 <title>FlyAway - You flights with the lower prices!</title>
 </head>
 <body>
-	<form action="FlightController" method="post">
+	<form action="/FlightController" method="post">
 		<label>Flight Date</label>
 		<input type="date" name="flightdate"><br/>
 		<label>Source of the flight</label>

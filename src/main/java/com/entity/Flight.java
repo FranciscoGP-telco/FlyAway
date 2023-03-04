@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Flights")
+@Table(name="flights")
 public class Flight {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -26,7 +27,7 @@ public class Flight {
 	private Date flightDate;
 	private float price;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "airline_id", nullable = false)
 	private Airline airline;
 	

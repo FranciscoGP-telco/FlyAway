@@ -12,10 +12,17 @@ import com.resource.DbResource;
 
 public class AirlineDao {
 	public List<Airline> listAllAirlines(){
-		SessionFactory sf = DbResource.getSessionFactory();
-		Session ss = sf.openSession();
-		TypedQuery tq = ss.createQuery("from airlines");
-		List<Airline> listOfAllAirlines = tq.getResultList();
+		List<Airline> listOfAllAirlines = null;
+		Session ss = DbResource.getSession();
+		//TypedQuery tq = ss.createQuery("from Airline");
+		TypedQuery tq = ss.createQuery("Select a from Airline a");
+		try{
+			listOfAllAirlines = tq.getResultList();
+		}  catch (Exception e) {
+			System.out.println("Error " + e.toString() + "executing the query");
+		} finally  {
+			ss.close();
+		}
 		return listOfAllAirlines;
 	}
 }

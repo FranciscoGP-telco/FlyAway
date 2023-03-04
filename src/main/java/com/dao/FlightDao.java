@@ -11,28 +11,41 @@ import com.entity.Flight;
 import com.resource.DbResource;
 
 public class FlightDao {
-	
+	TypedQuery tq = null;
 	public List<Flight> listFilterFlights(String source, String destiny, int numPassengers, String formatedDate){
-		SessionFactory sf = DbResource.getSessionFactory();
-		Session ss = sf.openSession();
-		TypedQuery tq = ss.createQuery("SELECT f FROM flights f "
-				+ "WHERE f.source LIKE :source "
-				+ "AND f.destiny LIKE :destiny "
-				+ "AND f.n_passengers = ;n_passengers "
-				+ "AND f.flight_date = :flight_date")
-				.setParameter("source", source)
-				.setParameter("destiny", destiny)
-				.setParameter("n_passengers", numPassengers)
-				.setParameter("flight_date", formatedDate);
-		List<Flight> listFilterFlights = tq.getResultList();
+		Session ss = DbResource.getSession();
+		List<Flight> listFilterFlights = null;
+		try {
+			tq = ss.createQuery("SELECT f FROM flights f "
+					+ "WHERE f.source LIKE :source "
+					+ "AND f.destiny LIKE :destiny "
+					+ "AND f.n_passengers = ;n_passengers "
+					+ "AND f.flight_date = :flight_date")
+					.setParameter("source", source)
+					.setParameter("destiny", destiny)
+					.setParameter("n_passengers", numPassengers)
+					.setParameter("flight_date", formatedDate);
+			listFilterFlights = tq.getResultList();
+		} catch (Exception e) {
+			System.out.println("Error " + e.toString() + "executing the query");
+		} finally  {
+			ss.close();
+		}
+		
 		return listFilterFlights;
 	}
 	
 	public List<Flight> listAllFlights(){
-		SessionFactory sf = DbResource.getSessionFactory();
-		Session ss = sf.openSession();
-		TypedQuery tq = ss.createQuery("FROM flights");
-		List<Flight> listAllFlights = tq.getResultList();
+		Session ss = DbResource.getSession();
+		List<Flight> listAllFlights = null;
+		try{
+			TypedQuery tq = ss.createQuery("FROM Flight");
+			listAllFlights = tq.getResultList();
+		}  catch (Exception e) {
+			System.out.println("Error " + e.toString() + "executing the query");
+		} finally  {
+			ss.close();
+		}
 		return listAllFlights;
 	}
 

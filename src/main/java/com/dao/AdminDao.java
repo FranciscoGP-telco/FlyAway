@@ -6,7 +6,6 @@ import javax.persistence.TypedQuery;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.entity.Admin;
@@ -14,8 +13,7 @@ import com.resource.DbResource;
 
 public class AdminDao {
 	public String getPassword(String adminId) {
-		SessionFactory sf = DbResource.getSessionFactory();
-		Session ss = sf.openSession();
+		Session ss = DbResource.getSession();
 		TypedQuery tq = ss.createQuery("SELECT a.password FROM admin a "
 				+ "WHERE admin_id LIKE :admin_id")
 				.setParameter("admin_id", adminId);
@@ -25,8 +23,7 @@ public class AdminDao {
 	
 	public int changePassword(String userName, String password) {
 		int result = 0;
-		SessionFactory sf = DbResource.getSessionFactory();
-		Session ss = sf.openSession();
+		Session ss = DbResource.getSession();
 		Query query = ss.createQuery("UPDATE admins SET password = :password WHERE username LIKE :username")
 				.setParameter("username", userName)
 				.setParameter("password", password);
@@ -38,5 +35,19 @@ public class AdminDao {
 			tr.rollback();
 		}
 		return result;
+	}
+	
+	public List<Admin> listAllAdmins(){
+		List<Admin> listOfAllAdmins = null;
+		Session ss = DbResource.getSession();
+		TypedQuery tq = ss.createQuery("from Admin");
+		try{
+			listOfAllAdmins = tq.getResultList();
+		}  catch (Exception e) {
+			System.out.println("Error " + e.toString() + "executing the query");
+		} finally  {
+			ss.close();
+		}
+		return listOfAllAdmins;
 	}
 }

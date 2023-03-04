@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>FlyAway</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -9,14 +9,28 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>ProductController</display-name>
-    <servlet-name>ProductController</servlet-name>
-    <servlet-class>com.controller.ProductController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProductController</servlet-name>
-    <url-pattern>/ProductController</url-pattern>
-  </servlet-mapping>
+<servlet>
+  <servlet-name>FlightController</servlet-name>
+  <servlet-class>com.controller.FlightController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>FlightController</servlet-name>
+  <url-pattern>/ListFlights.jsp</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>AirlineController</servlet-name>
+  <servlet-class>com.controller.AirlineController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>AirlineController</servlet-name>
+  <url-pattern>/ListAirlines.jsp</url-pattern>
+</servlet-mapping>
+<servlet>
+  <servlet-name>AdminController</servlet-name>
+  <servlet-class>com.controller.AdminController</servlet-class>
+</servlet>
+<servlet-mapping>
+  <servlet-name>AdminController</servlet-name>
+  <url-pattern>/ListAdmins.jsp</url-pattern>
+</servlet-mapping>
 </web-app>
