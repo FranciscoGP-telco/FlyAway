@@ -27,7 +27,7 @@ public class Flight {
 	private Date flightDate;
 	private float price;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "airline_id", nullable = false)
 	private Airline airline;
 	

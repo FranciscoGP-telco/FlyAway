@@ -24,8 +24,8 @@ public class AdminDao {
 	public int changePassword(String userName, String password) {
 		int result = 0;
 		Session ss = DbResource.getSession();
-		Query query = ss.createQuery("UPDATE admins SET password = :password WHERE username LIKE :username")
-				.setParameter("username", userName)
+		Query query = ss.createQuery("UPDATE admins SET password = :password WHERE userName LIKE :userName")
+				.setParameter("userName", userName)
 				.setParameter("password", password);
 		Transaction tr = ss.beginTransaction();
 		try {

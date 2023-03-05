@@ -33,32 +33,26 @@ public class FlightController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
 		response.setContentType("text/html");
-		FlightService fs = new FlightService();
-		List<Flight> listOfFlights = fs.findAllFlights();
+		FlightService flightService = new FlightService();
+		List<Flight> listOfFlights = flightService.findAllFlights();
 		request.setAttribute("listOfFlights", listOfFlights);
-		RequestDispatcher rd = request.getRequestDispatcher("ListFlights.jsp");
-		rd.include(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/ListFlights.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
 		response.setContentType("text/html");
-		//flightdate source destiny number
-		
 		String source = request.getParameter("source");
 		String destiny = request.getParameter("destiny");
-		int numPassengers = Integer.parseInt(request.getParameter("number"));
-		Date date = new Date(request.getParameter("flightdate"));
-		FlightService fs = new FlightService();
-		List<Flight> listOfFlights = fs.findFlights(source, destiny, numPassengers, date);
+		FlightService flightService = new FlightService();
+		List<Flight> listOfFlights = flightService.findFlights(source, destiny);
 		request.setAttribute("listOfFlights", listOfFlights);
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		rd.include(request, response);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+		requestDispatcher.include(request, response);
 	}
 
 }

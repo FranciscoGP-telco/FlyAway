@@ -12,7 +12,7 @@ public class DbResource {
 		if (factory == null) {
 			Configuration con = new Configuration();
 			con.configure("hibernate.cfg.xml");
-			factory = con.buildSessionFactory();
+			factory = con.buildSessionFactory();		
 		}
 		
 		return factory.openSession();

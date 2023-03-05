@@ -2,6 +2,7 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,38 +18,27 @@ import com.service.AdminService;
 /**
  * Servlet implementation class AdminController
  */
+//@WebServlet(urlPatterns = "/ListAdmins.jsp", name = "AdminController")
 @WebServlet("/AdminController")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AdminController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
 		response.setContentType("text/html");
-		AdminService as = new AdminService();
-		List<Admin> listOfAllAdmins = as.findAllAdmins();
+		AdminService adminService = new AdminService();
+		List<Admin> listOfAllAdmins = adminService.findAllAdmins();
 		request.setAttribute("listOfAllAdmins", listOfAllAdmins);
-		RequestDispatcher rd = request.getRequestDispatcher("ListAdmins.jsp");
-		rd.include(request, response);
+		RequestDispatcher rd = request.getRequestDispatcher("/ListAdmins.jsp");
+		rd.forward(request, response);
 	}
 
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }

@@ -12,14 +12,14 @@
 </head>
 <body>
 	<%
-	Object obj = request.getAttribute("listOfAirlines");
+	Object obj = request.getAttribute("listOfAllAdmins");
 	List<Admin> list = (List)obj;
 	Iterator<Admin> li = list.iterator();
 	while(li.hasNext()){
 		Admin a = li.next();
 	%>
 	<div>
-		<span>Name:<%= a.getUsername() %> </span>
+		<span>Name:<%= a.getUserName() %> </span>
 	</div>
 	<%
 	}

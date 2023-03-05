@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="purchases")
 public class Purchase {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -21,10 +23,11 @@ public class Purchase {
 	@Column(name = "tlfn_number")
 	private int tlfnNumber;
 	private String email;
+	@Column(name = "card_number")
 	private String cardNumber;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "flightId", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;
 	public int getpurchaseId() {
 		return purchaseId;

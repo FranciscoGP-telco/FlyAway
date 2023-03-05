@@ -16,6 +16,7 @@ public class AirlineDao {
 		Session ss = DbResource.getSession();
 		//TypedQuery tq = ss.createQuery("from Airline");
 		TypedQuery tq = ss.createQuery("Select a from Airline a");
+		System.out.println("holaaaa");
 		try{
 			listOfAllAirlines = tq.getResultList();
 		}  catch (Exception e) {

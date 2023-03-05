@@ -10,8 +10,7 @@ import com.resource.DbResource;
 public class PurchaseDao {
 	
 	public boolean storePurchase(Purchase purchase) {
-		SessionFactory sf = DbResource.getSessionFactory();
-		Session ss = sf.openSession();
+		Session ss = DbResource.getSession();
 		Transaction tr = ss.getTransaction();
 		tr.begin();
 		try {

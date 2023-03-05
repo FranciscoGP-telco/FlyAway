@@ -9,28 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-<servlet>
-  <servlet-name>FlightController</servlet-name>
-  <servlet-class>com.controller.FlightController</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>FlightController</servlet-name>
-  <url-pattern>/ListFlights.jsp</url-pattern>
-</servlet-mapping>
-<servlet>
-  <servlet-name>AirlineController</servlet-name>
-  <servlet-class>com.controller.AirlineController</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>AirlineController</servlet-name>
-  <url-pattern>/ListAirlines.jsp</url-pattern>
-</servlet-mapping>
-<servlet>
-  <servlet-name>AdminController</servlet-name>
-  <servlet-class>com.controller.AdminController</servlet-class>
-</servlet>
-<servlet-mapping>
-  <servlet-name>AdminController</servlet-name>
-  <url-pattern>/ListAdmins.jsp</url-pattern>
-</servlet-mapping>
 </web-app>

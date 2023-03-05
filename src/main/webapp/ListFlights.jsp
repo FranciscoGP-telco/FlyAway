@@ -21,6 +21,7 @@
 	<div>
 		<span>Source: <%= f.getSource() %></span>
 		<span>Destiny: <%= f.getDestiny() %></span>
+		<span>Destiny: <%= f.getAirline().getName() %></span>
 	</div>
 	<%
 	}
