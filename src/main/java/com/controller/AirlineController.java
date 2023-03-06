@@ -18,7 +18,7 @@ import com.service.AirlineService;
 /**
  * Servlet implementation class AirlineController
  */
-@WebServlet("/AirlineController")
+@WebServlet("/Airlines")
 public class AirlineController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

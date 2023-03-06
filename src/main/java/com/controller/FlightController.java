@@ -15,41 +15,42 @@ import javax.servlet.http.HttpServletResponse;
 import com.entity.Flight;
 import com.service.FlightService;
 
-/**
- * Servlet implementation class ProductController
- */
-@WebServlet("/FlightController")
+
+@WebServlet("/Flights")
 public class FlightController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public FlightController() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Stablishing the content type of the response
 		response.setContentType("text/html");
+		
+		//Creation of a FlightService object and a List of Flights from the query
 		FlightService flightService = new FlightService();
 		List<Flight> listOfFlights = flightService.findAllFlights();
+		
+		//Saving as an attritubte the List and sending to the request
 		request.setAttribute("listOfFlights", listOfFlights);
 		RequestDispatcher rd = request.getRequestDispatcher("/ListFlights.jsp");
 		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Stablishing the content type of the response
 		response.setContentType("text/html");
+		
+		//Getting the parameters from the form
 		String source = request.getParameter("source");
 		String destiny = request.getParameter("destiny");
+		
+		//Creation of a FlightService object and a List of Flights from the query, filtering by the source and destniy
 		FlightService flightService = new FlightService();
 		List<Flight> listOfFlights = flightService.findFlights(source, destiny);
+		
+		//Saving as an attritubte the List and sending to the request
 		request.setAttribute("listOfFlights", listOfFlights);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
 		requestDispatcher.include(request, response);

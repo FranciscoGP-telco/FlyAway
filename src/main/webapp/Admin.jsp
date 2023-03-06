@@ -1,24 +1,17 @@
+
 <%@page import="java.util.Iterator"%>
-<%@page import="com.entity.Flight" %>
 <%@page import="java.util.List" %>
+<%@page import="com.entity.Flight" %>
+<%@page import="com.entity.Airline" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>FlyAway - You flights with the lower prices!</title>
+<title>Admin Page - List with all the Admins</title>
 </head>
 <body>
-	<form action="Flights" method="post">
-		<label>Source of the flight</label>
-		<input type="text" name="source" required><br/>
-		<label>Destiny of the flight</label>
-		<input type="text" name="destiny" required><br/>
-		<input type="submit" value="search">
-		<input type="reset" value="reset">
-	</form>
-	
 	<%
 	Object obj = request.getAttribute("listOfFlights");
 	if(obj != null){

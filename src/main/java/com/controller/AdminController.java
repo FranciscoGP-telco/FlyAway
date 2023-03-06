@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.entity.Admin;
+import com.entity.Airline;
+import com.entity.Flight;
 import com.service.AdminService;
+import com.service.AirlineService;
+import com.service.FlightService;
 
-/**
- * Servlet implementation class AdminController
- */
-//@WebServlet(urlPatterns = "/ListAdmins.jsp", name = "AdminController")
-@WebServlet("/AdminController")
+@WebServlet("/Admin")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,10 +29,19 @@ public class AdminController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		AdminService adminService = new AdminService();
-		List<Admin> listOfAllAdmins = adminService.findAllAdmins();
-		request.setAttribute("listOfAllAdmins", listOfAllAdmins);
-		RequestDispatcher rd = request.getRequestDispatcher("/ListAdmins.jsp");
+		AirlineService airlineService = new AirlineService();
+		FlightService flightService = new FlightService();
+		
+		List<Airline> listOfAirlines = airlineService.findAllAirlines();
+		List<Flight> listOfSources = flightService.findAllSources();
+		List<Flight> listOfDestinies = flightService.findAllDestinies();
+		List<Flight> listOfFlights = flightService.findAllFlights();
+		
+		request.setAttribute("listOfAirlines", listOfAirlines);
+		request.setAttribute("listOfSources", listOfSources);
+		request.setAttribute("listOfDestinies", listOfDestinies);
+		request.setAttribute("listOfFlights", listOfFlights);
+		RequestDispatcher rd = request.getRequestDispatcher("/Admin.jsp");
 		rd.forward(request, response);
 	}
 

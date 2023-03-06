@@ -25,10 +25,12 @@ public class Purchase {
 	private String email;
 	@Column(name = "card_number")
 	private String cardNumber;
-
+	@Column(name = "num_passengers")
+	private int numPassengers;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "flight_id", nullable = false)
 	private Flight flight;
+
 	public int getpurchaseId() {
 		return purchaseId;
 	}
@@ -60,6 +62,13 @@ public class Purchase {
 		this.email = email;
 	}
 	
+	public int getNumPassengers() {
+		return numPassengers;
+	}
+	public void setNumPassengers(int numPassengers) {
+		this.numPassengers = numPassengers;
+	}
+
 	public String getCardNumber() {
 		return cardNumber;
 	}
@@ -67,9 +76,16 @@ public class Purchase {
 		this.cardNumber = cardNumber;
 	}
 	
+	public Flight getFlight() {
+		return flight;
+	}
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+	
 	@Override
 	public String toString() {
-		return String.format("Purchase [purchaseId=%d, name=%s, lastName=%s, tlfnNumber=%d, email=%s, cardNumber=%s, flight=%d]", 
-				purchaseId, name, lastName, tlfnNumber, cardNumber, flight.getflightId());
+		return String.format("Purchase [purchaseId=%d, name=%s, lastName=%s, tlfnNumber=%d, email=%s, cardNumber=%s, numPassengers=%d, flight=%s]", 
+				purchaseId, name, lastName, tlfnNumber, email, cardNumber, numPassengers, flight.toString());
 	}
 }
