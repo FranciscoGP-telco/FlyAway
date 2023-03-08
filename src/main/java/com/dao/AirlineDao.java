@@ -22,17 +22,16 @@ public class AirlineDao {
 		Session ss = DbResource.getSession();
 		
 		//Creation of the query
-		TypedQuery tq = ss.createQuery("Select a from Airline a");
+		TypedQuery tq = ss.createQuery("from Airline");
 		
 		//Storing the results
 		try{
 			listOfAllAirlines = tq.getResultList();
 		}  catch (Exception e) {
 			System.out.println("Error " + e.toString() + "executing the query");
-		} finally  {
-			//Closing the session
-			ss.close();
 		}
+		//Closing the session
+		ss.close();
 		return listOfAllAirlines;
 	}
 }

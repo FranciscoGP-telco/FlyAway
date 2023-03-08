@@ -14,14 +14,10 @@ public class DbResource {
 			//Stablishing the configuration of the file hibernate.cfg.xml and building the factory
 			Configuration con = new Configuration();
 			con.configure("hibernate.cfg.xml");
-			factory = con.buildSessionFactory();		
+			factory = con.buildSessionFactory();
 		}
 		
 		return factory.openSession();
-	}
-	//function to close the session
-	public static void close() {
-		factory.close();
 	}
 	
 }

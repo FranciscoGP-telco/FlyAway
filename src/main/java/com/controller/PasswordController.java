@@ -12,18 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.entity.Airline;
-import com.entity.Flight;
 import com.service.AdminService;
-import com.service.AirlineService;
-import com.service.FlightService;
 
-@WebServlet("/Admin")
-public class AdminController extends HttpServlet {
+
+@WebServlet("/Password")
+public class PasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private AdminService adminService = new AdminService();
-   
-    public AdminController() {
+	
+    public PasswordController() {
         super();
     }
 
@@ -41,29 +38,12 @@ public class AdminController extends HttpServlet {
 			String adminName = (String) httpSession.getAttribute("adminName");
 			String password = (String) httpSession.getAttribute("password");
 			if (adminService.authentication(adminName, password)){
-				//Creation of the services
-				AirlineService airlineService = new AirlineService();
-				FlightService flightService = new FlightService();
-				
-				//Storing in list the queries
-				List<Airline> listOfAirlines = airlineService.findAllAirlines();
-				List<String> listOfSources = flightService.findAllSources();
-				List<String> listOfDestinies = flightService.findAllDestinies();
-				List<Flight> listOfFlights = flightService.findAllFlights();
-				
-				//Sending to the request as attributes
-				request.setAttribute("listOfAirlines", listOfAirlines);
-				request.setAttribute("listOfSources", listOfSources);
-				request.setAttribute("listOfDestinies", listOfDestinies);
-				request.setAttribute("listOfFlights", listOfFlights);
-				
 				//RequestDispatcher to send the info to the jsp file
-				rd = request.getRequestDispatcher("/WEB-INF/Admin.jsp");
+				rd = request.getRequestDispatcher("/WEB-INF/Password.jsp");
 			} else {
 				pw.println("Username and password incorrect!");
 				rd = request.getRequestDispatcher("/Login.jsp");
 			}
-			
 		}
 		rd.forward(request, response);
 	}
@@ -73,23 +53,28 @@ public class AdminController extends HttpServlet {
 		//Stablishing the content type of the response
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-
-		HttpSession session = request.getSession();
-		//Getting the parameters from the form
-		String adminName = request.getParameter("adminName");
-		String password = request.getParameter("password");
+		HttpSession httpSession = request.getSession();
 		
+		//Getting the parameters from the session
+		String adminName = (String) httpSession.getAttribute("adminName");
+		String password = (String) httpSession.getAttribute("password");
+		
+		//Getting the new pasword from de form
+		String newPassword = request.getParameter("newPassword");
+		
+		System.out.println(adminName + " holaaaa " + password);
+		//checking the credentials
 		if(adminService.authentication(adminName, password)){
-			//Settings the attributes of the http session
-			session.setAttribute("adminName",adminName);
-			session.setAttribute("password",password);
-			doGet(request, response);
+			//Creation of purchaseService Object and sending the object to store it in the DB
+			AdminService adminService = new AdminService();
+			String result = adminService.changePassword(adminName, newPassword);
+			pw.println(result + " Please login again");
+			
 		} else {
 			pw.println("Username or password incorrect");
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Login.jsp");
-			requestDispatcher.include(request, response);
 		}
-
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Login.jsp");
+		requestDispatcher.include(request, response);
 	}
 
 }

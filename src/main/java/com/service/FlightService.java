@@ -14,12 +14,12 @@ public final class FlightService {
 	}
 	
 	//Function to call the query listAllSources
-	public List<Flight> findAllSources(){
+	public List<String> findAllSources(){
 		return fd.listAllSources();
 	}
 	
 	//Function to call the query listAllDestinies
-	public List<Flight> findAllDestinies(){
+	public List<String> findAllDestinies(){
 		return fd.listAllDestinies();
 	}
 	

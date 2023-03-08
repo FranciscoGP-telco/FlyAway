@@ -33,11 +33,9 @@ public class FlightDao {
 			listFilterFlights = tq.getResultList();
 		} catch (Exception e) {
 			System.out.println("Error " + e.toString() + "executing the query");
-		} finally  {
-			//Closing the session
-			ss.close();
 		}
 		
+		ss.close();
 		return listFilterFlights;
 	}
 	
@@ -56,17 +54,15 @@ public class FlightDao {
 			listAllFlights = tq.getResultList();
 		}  catch (Exception e) {
 			System.out.println("Error " + e.toString() + "executing the query");
-		} finally  {
-			//Closing the session
-			ss.close();
 		}
+		ss.close();
 		return listAllFlights;
 	}
 	
 	//Query to get all the sources
-	public List<Flight> listAllSources(){
+	public List<String> listAllSources(){
 		//Initialization of the List
-		List<Flight> sourceList = null;
+		List<String> sourceList = null;
 		
 		//stablishing the session
 		Session ss = DbResource.getSession();
@@ -78,17 +74,15 @@ public class FlightDao {
 			sourceList = tq.getResultList();
 		}  catch (Exception e) {
 			System.out.println("Error " + e.toString() + "executing the query");
-		} finally  {
-			//Closing the session
-			ss.close();
 		}
+		ss.close();
 		return sourceList;
 	}
 	
 	//Query to get all the destinies
-	public List<Flight> listAllDestinies(){
+	public List<String> listAllDestinies(){
 		//Initialization of the List
-		List<Flight> destinyList = null;
+		List<String> destinyList = null;
 		
 		//stablishing the session
 		Session ss = DbResource.getSession();
@@ -100,10 +94,9 @@ public class FlightDao {
 			destinyList = tq.getResultList();
 		}  catch (Exception e) {
 			System.out.println("Error " + e.toString() + "executing the query");
-		} finally  {
-			//Closing the session
-			ss.close();
 		}
+		//Closing the session
+		ss.close();
 		return destinyList;
 	}
 	
@@ -127,10 +120,9 @@ public class FlightDao {
 			flight = listAllFlights.get(0);
 		}  catch (Exception e) {
 			System.out.println("Error " + e.toString() + "executing the query");
-		} finally  {
-			//Closing the session
-			ss.close();
 		}
+		//Closing the session
+		ss.close();
 		return flight;
 	}
 

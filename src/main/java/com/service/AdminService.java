@@ -1,9 +1,6 @@
 package com.service;
 
-import java.util.List;
-
 import com.dao.AdminDao;
-import com.entity.Admin;
 
 public class AdminService {
 	AdminDao ad = new AdminDao();
@@ -11,6 +8,12 @@ public class AdminService {
 	//Function to call the getPassword query
 	public String getPassword(String adminName){
 		return ad.getPassword(adminName);
+	}
+	
+	//Function to check if the password is correct
+	public boolean authentication(String adminName, String insertedPassword) {
+		String dbPassword = getPassword(adminName);
+		return dbPassword.equals(insertedPassword);
 	}
 	
 	//Function to call the changePassword query. Checks the results and return a String

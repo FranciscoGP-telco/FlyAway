@@ -12,22 +12,25 @@ public class PurchaseDao {
 	
 	//Query to store the purchase
 	public boolean storePurchase(Purchase purchase) {
+		boolean result = false;
 		//stablishing the session
 		Session ss = DbResource.getSession();
+		System.out.println("Hola estoy intentando hacer una comprita");
 		//Start the transaction
 		Transaction tr = ss.beginTransaction();
-		tr.begin();
 		//executing the query
 		try {
 			ss.save(purchase);
+			//Closing the session
+			tr.commit();
+			result = true;
 		} catch (Exception e) {
 			//If we have some problem, we perform a rollback
 			System.out.println("Error " + e.toString() + " processing the purchase");
 			tr.rollback();
-			return false;
+			result = false;
 		}
-		//Closing the session
-		tr.commit();
-		return true;
+		ss.close();
+		return result;
 	}
 }
