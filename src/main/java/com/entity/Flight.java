@@ -21,8 +21,6 @@ public class Flight {
 	private int flightId;
 	private String source;
 	private String destiny;
-	@Column(name = "n_passengers")
-	private int numPassengers;
 	@Column(name = "flight_date")
 	private Date flightDate;
 	private float price;
@@ -56,12 +54,7 @@ public class Flight {
 	public void setFlightDate(Date flightDate) {
 		this.flightDate = flightDate;
 	}
-	public int getnumPassengers() {
-		return numPassengers;
-	}
-	public void setnumPassengers(int numPassengers) {
-		this.numPassengers = numPassengers;
-	}
+
 	public Airline getAirline() {
 		return airline;
 	}
@@ -77,8 +70,8 @@ public class Flight {
 	}
 	@Override
 	public String toString() {
-		return String.format("Flight [flightId=%d, source=%s, destiny=%s, flightDate=%s, numPassengers=%d, airline=%s]", 
-				flightId, source, destiny, flightDate.toString(), numPassengers, airline.getName());
+		return String.format("Flight [flightId=%d, source=%s, destiny=%s, flightDate=%s, airline=%s]", 
+				flightId, source, destiny, flightDate.toString(), airline.getName());
 	}
 
 }

@@ -10,7 +10,7 @@
 <title>FlyAway - You flights with the lower prices!</title>
 </head>
 <body>
-	<form action="/Flights" method="post">
+	<form action="Flights" method="post">
 		<label>Source of the flight</label>
 		<input type="text" name="source" required><br/>
 		<label>Destiny of the flight</label>
